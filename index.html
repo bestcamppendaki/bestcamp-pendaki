@@ -60,6 +60,26 @@ footer{background:#092b20;color:#dbe8e0;padding:45px 0 25px}.footer-grid{display
 @media(max-width:420px){.products{grid-template-columns:1fr}.hero h1{font-size:40px}.hero-actions a{width:100%;text-align:center}.stats{gap:15px}}
 
 .seo-area{background:#f4f7f3;padding:48px 0 36px;border-top:1px solid #e2ebe5}.seo-area h2{font-size:28px;color:var(--green);margin:0 0 10px}.seo-area .seo-intro{max-width:900px;color:#5f6e66;line-height:1.7;margin-bottom:24px}.seo-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px}.seo-card{background:#fff;border:1px solid #e1ebe4;border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(11,55,39,.05)}.seo-card h3{margin:0 0 14px;color:#173f31}.seo-links{display:flex;flex-wrap:wrap;gap:9px}.seo-links a{display:inline-block;padding:9px 13px;border-radius:999px;background:#edf5ef;color:#14623f;font-size:13px;font-weight:700;text-decoration:none}.seo-links a:hover{background:#dceee1}.seo-area .area-text{line-height:1.8;color:#596960;font-size:14px}.seo-note{margin-top:18px;font-size:12px;color:#74827a}@media(max-width:680px){.seo-grid{grid-template-columns:1fr}.seo-area h2{font-size:24px}}
+/* Tombol Daftar Member khusus HP */
+.mobile-member {
+  display: none;
+}
+
+@media (max-width: 680px) {
+  .mobile-member {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: #16a36a;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+}
 </style>
 </head>
 <body>
@@ -80,6 +100,12 @@ footer{background:#092b20;color:#dbe8e0;padding:45px 0 25px}.footer-grid{display
     <button class="nav-cart" onclick="openCart()" aria-label="Buka keranjang">🛒<span class="nav-cart-badge" id="navCartBadge">0</span></button>
     <a class="cta" href="https://wa.me/6285649690708?text=Halo%20Bestcamp%20Pendaki%2C%20saya%20ingin%20booking%20rental." target="_blank">Booking Sekarang</a>
     <button class="menu-toggle" onclick="openCart()" aria-label="Menu">☰</button>
+    <a class="mobile-member"
+   href="https://docs.google.com/forms/d/e/1FAIpQLScOv1fbFstq-ClV0fqcgThBrPTHlamL8XDn8A25PbYJSuzE1Q/viewform"
+   target="_blank"
+   rel="noopener noreferrer">
+   Daftar Member
+</a>
   </div>
 </nav>
 
