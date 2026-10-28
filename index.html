@@ -152,7 +152,23 @@ footer{background:#092b20;color:#dbe8e0;padding:45px 0 25px}.footer-grid{display
   </div>
 </section>
 
-<section class="section" id="reward">
+<section class="section" id="cek-member">
+  <div class="container">
+    <div class="section-head">
+      <h2>Cek Member Bestcamp</h2>
+      <p>Masukkan Member ID untuk mengecek nama dan status keanggotaan.</p>
+    </div>
+
+    <div style="max-width:560px;margin:0 auto;padding:24px;border:1px solid #dce6df;border-radius:18px;background:#fff;">
+      <label for="memberId" style="display:block;font-weight:700;margin-bottom:8px;">Member ID</label>
+      <input id="memberId" type="text" placeholder="Contoh: BCP-000003"
+        style="width:100%;padding:13px;border:1px solid #ccc;border-radius:10px;margin-bottom:12px;box-sizing:border-box;">
+      <button class="cta" type="button" onclick="cekMemberWebsite()">Cek Member</button>
+      <div id="hasilCekMember" aria-live="polite" style="margin-top:16px;"></div>
+    </div>
+  </div>
+</section>
+  <section class="section" id="reward">
   <div class="container">
     <div class="reward">
       <div>
@@ -499,6 +515,50 @@ function quickBook(){
  window.open(`https://wa.me/${WA}?text=${msg}`,"_blank");
 }
 renderProducts();updateCartBadge();
+  
+async function cekMemberWebsite() {
+  const input = document.getElementById("memberId");
+  const hasil = document.getElementById("hasilCekMember");
+  const id = input.value.trim().toUpperCase();
+
+  const endpoint = "https://script.google.com/macros/s/AKfycbx2LUDJShMnm8BdSpsevHPnkwpsqWhTF9Ges68E8OX1ld0Xb88SQt97QquElekWjogK/exec";
+
+  if (!/^BCP-\d{6}$/.test(id)) {
+    hasil.textContent = "Masukkan Member ID dengan format BCP-000001.";
+    return;
+  }
+
+  hasil.textContent = "Memeriksa data member...";
+
+  try {
+    const response = await fetch(
+      endpoint + "?id=" + encodeURIComponent(id)
+    );
+    const data = await response.json();
+
+    if (data.found && data.active) {
+      hasil.innerHTML =
+        "<div style='padding:14px;border-radius:10px;background:#e8f7ee;color:#14532d'>" +
+        "<strong>Member ditemukan</strong><br>" +
+        "Nama: " + escapeMemberText(data.name) + "<br>" +
+        "Status: " + escapeMemberText(data.status) +
+        "</div>";
+    } else {
+      hasil.textContent =
+        data.message || "Member tidak ditemukan atau tidak aktif.";
+    }
+  } catch (error) {
+    hasil.textContent =
+      "Pengecekan gagal. Silakan coba kembali.";
+  }
+}
+
+function escapeMemberText(value) {
+  const div = document.createElement("div");
+  div.textContent = String(value || "");
+  return div.innerHTML;
+}
+
 </script>
 </body>
 </html>
